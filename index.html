@@ -690,7 +690,7 @@
         </div>
     </div>
 
-    <!-- نافذة البروفايل بالصور الـ 15 الجاهزة بروابط مباشرة -->
+    <!-- نافذة البروفايل بالصور الـ 15 المحدثة بالكامل -->
     <div id="profile-modal" class="modal">
         <div class="modal-body" style="max-width: 380px;">
             <h3 style="color: var(--main-gold); margin-bottom: 10px;" id="t-profile-title">👤 خزانة الصور الـ 15</h3>
@@ -743,71 +743,66 @@
             250,      // Lvl 2
             750,      // Lvl 3
             2500,     // Lvl 4
-            7500,     // Lvl 5
+            7500,     // Lvl 5 (يفتح الإطار الأزرق)
             20000,    // Lvl 6
             50000,    // Lvl 7
             120000,   // Lvl 8
             250000,   // Lvl 9
-            550000    // Lvl 10
+            550000    // Lvl 10 (يفتح الإطار البنفسجي)
         ];
 
-        // روابط صور ويب مباشرة 100% تعمل على كل الهواتف ومحمية من الحجب
+        // مصفوفة الـ 15 صورة المحدثة مع روابط تعمل 100%
         const AVATARS = [
             // 2 مجانية (إطار أخضر)
             { id: 1, name: "فنك أزرق", emoji: "🦊🧢", tier: "green", req: 0, price: 0 },
             { id: 2, name: "فنك وردي", emoji: "🦊🎀", tier: "green", req: 0, price: 0 },
             
-            // 3 مستوى 5 (إطار أزرق)
-            { id: 3, name: "فنك قبعة زرقاء", emoji: "🧢🦊", tier: "blue", req: 5, price: 0 },
-            { id: 4, name: "فنكة قبعة وردية", emoji: "👒🦊", tier: "blue", req: 5, price: 0 },
-            { id: 5, name: "فنك النظارات", emoji: "🕶️🦊", tier: "blue", req: 5, price: 0 },
+            // 3 مستوى 5 (إطار أزرق) - أعلام الجزائر وأمريكا وفرنسا كما كانت
+            { id: 3, name: "فنك الجزائر 🇩🇿", emoji: "🇩🇿🦊", tier: "blue", req: 5, price: 0 },
+            { id: 4, name: "فنك أمريكا 🇺🇸", emoji: "🇺🇸🦊", tier: "blue", req: 5, price: 0 },
+            { id: 5, name: "فنك فرنسا 🇫🇷", emoji: "🇫🇷🦊", tier: "blue", req: 5, price: 0 },
             
-            // 5 مستوى 10 (إطار بنفسجي)
-            { 
-                id: 6, 
-                name: "باربي الأنيقة", 
-                img: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=300", 
-                tier: "purple", req: 10, price: 0 
-            },
-            { 
-                id: 7, 
-                name: "أميرة بالحجاب", 
-                img: "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?w=300", 
-                tier: "purple", req: 10, price: 0 
-            },
+            // 5 مستوى 10 (إطار بنفسجي) - باربي والأميرة المحجبة أنيقتان بدون صور عشوائية
+            { id: 6, name: "باربي الأنيقة", emoji: "👱‍♀️👑", tier: "purple", req: 10, price: 0 },
+            { id: 7, name: "أميرة بالحجاب", emoji: "🧕✨", tier: "purple", req: 10, price: 0 },
             { id: 8, name: "وحش الظلال", emoji: "👹", tier: "purple", req: 10, price: 0 },
             { id: 9, name: "زومبي الصحراء", emoji: "🧟", tier: "purple", req: 10, price: 0 },
             { id: 10, name: "مصاص الدماء", emoji: "🧛", tier: "purple", req: 10, price: 0 },
             
-            // 5 شخصيات VIP ذهبية (2.8 USDT)
+            // 5 شخصيات VIP ذهبية (2.8 USDT) - زورو، لوفي، نامي، غوجو، وميكاسا (روابط رسمية ومباشرة)
             { 
                 id: 11, 
-                name: "غوكو الإله الأزلي", 
-                img: "https://cdn.myanimelist.net/images/characters/3/306716.jpg", 
+                name: "رورونوا زورو", 
+                img: "https://cdn.myanimelist.net/images/characters/3/100534.jpg", 
+                fallback: "⚔️", 
                 tier: "gold", req: 0, price: 2.8 
             },
             { 
                 id: 12, 
                 name: "لوفي جوي بوي", 
                 img: "https://cdn.myanimelist.net/images/characters/9/310307.jpg", 
+                fallback: "☀️", 
                 tier: "gold", req: 0, price: 2.8 
             },
             { 
                 id: 13, 
-                name: "يور فورجر", 
-                img: "https://cdn.myanimelist.net/images/characters/9/472406.jpg", 
+                name: "نامي", 
+                img: "https://cdn.myanimelist.net/images/characters/2/263249.jpg", 
+                fallback: "🍊", 
                 tier: "gold", req: 0, price: 2.8 
             },
             { 
                 id: 14, 
-                name: "ميكاسا أكرمان", 
-                img: "https://cdn.myanimelist.net/images/characters/9/215563.jpg", 
+                name: "غوجو ساتورو", 
+                img: "https://cdn.myanimelist.net/images/characters/15/422168.jpg", 
+                fallback: "👁️", 
                 tier: "gold", req: 0, price: 2.8 
             },
             { 
                 id: 15, 
-                name: "غوجو ساتورو", 
-                img: "https://cdn.myanimelist.net/images/characters/15/422168.jpg", 
+                name: "ميكاسا أكرمان", 
+                img: "https://cdn.myanimelist.net/images/characters/9/215563.jpg", 
+                fallback: "🧣", 
                 tier: "gold", req: 0, price: 2.8 
             }
         ];
@@ -815,7 +810,7 @@
         const tg = window.Telegram?.WebApp;
         if (tg) { tg.expand(); tg.enableClosingConfirmation?.(); }
 
-        let game = JSON.parse(localStorage.getItem('fennec_v11_save')) || {
+        let game = JSON.parse(localStorage.getItem('fennec_v12_save')) || {
             gold: 0,
             cash: 0,
             level: 1,
@@ -832,7 +827,7 @@
 
         function getAvatarHTML(av) {
             if (av.img) {
-                return `<img src="${av.img}" alt="${av.name}" onerror="this.outerHTML='⭐'">`;
+                return `<img src="${av.img}" alt="${av.name}" onerror="this.onerror=null; this.parentElement.innerHTML='${av.fallback || '⭐'}';">`;
             }
             return av.emoji;
         }
@@ -891,7 +886,7 @@
             topAvatarEl.innerHTML = getAvatarHTML(curAvatar);
             topAvatarEl.className = `avatar-circle border-${curAvatar.tier}`;
 
-            localStorage.setItem('fennec_v11_save', JSON.stringify(game));
+            localStorage.setItem('fennec_v12_save', JSON.stringify(game));
         }
 
         const fennecBtn = document.getElementById('fennec-btn');
@@ -1223,7 +1218,7 @@
 
         function resetAccount() {
             if (confirm("هل أنت متأكد من تصفير حسابك والبدء من جديد؟")) {
-                localStorage.removeItem('fennec_v11_save');
+                localStorage.removeItem('fennec_v12_save');
                 location.reload();
             }
         }
