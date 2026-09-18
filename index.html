@@ -84,7 +84,7 @@
 
         @keyframes pulseGold {
             from { box-shadow: 0 0 8px #f59e0b; }
-            to { box-shadow: 0 0 22px #ffe259; }
+            to { box-shadow: 0 0 25px #ffe259; }
         }
 
         .cash-pill {
@@ -125,26 +125,62 @@
         .page {
             display: none;
             flex-direction: column;
-            padding: 12px 16px 85px;
+            padding: 10px 16px 85px;
             min-height: 100%;
         }
 
         .page.active { display: flex; }
 
-        .balance-box { text-align: center; margin-top: 4px; }
+        .balance-box {
+            text-align: center;
+            margin-top: 2px;
+        }
+
         .level-badge {
             display: inline-block;
             background: var(--gold-gradient);
             color: #000;
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 900;
-            padding: 3px 14px;
-            border-radius: 15px;
-            margin-bottom: 6px;
+            padding: 3px 12px;
+            border-radius: 14px;
+            margin-bottom: 4px;
+        }
+
+        .level-progress-box {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 10px;
+            padding: 6px 10px;
+            margin: 4px auto 8px;
+            max-width: 270px;
+        }
+
+        .level-progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+
+        .level-progress-bg {
+            width: 100%;
+            height: 7px;
+            background: #1e293b;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .level-progress-fill {
+            height: 100%;
+            background: var(--gold-gradient);
+            width: 0%;
+            transition: width 0.1s ease-out;
         }
 
         .balance-num {
-            font-size: 44px;
+            font-size: 42px;
             font-weight: 900;
             color: #fff;
             display: flex;
@@ -161,15 +197,15 @@
             justify-content: center;
             align-items: center;
             flex-grow: 1;
-            margin: 12px 0;
+            margin: 8px 0;
             touch-action: none;
         }
 
         .fennec-main-coin {
-            width: 66vw;
-            height: 66vw;
-            max-width: 275px;
-            max-height: 275px;
+            width: 64vw;
+            height: 64vw;
+            max-width: 260px;
+            max-height: 260px;
             border-radius: 50%;
             border: 9px solid #1e293b;
             background: var(--gold-gradient);
@@ -183,7 +219,7 @@
         }
 
         .fennec-main-coin:active { transform: scale(0.93); }
-        .fennec-face-img { font-size: 125px; line-height: 1; }
+        .fennec-face-img { font-size: 120px; line-height: 1; }
 
         .click-number {
             position: absolute;
@@ -201,8 +237,8 @@
             100% { transform: translateY(-75px) scale(0.8); opacity: 0; }
         }
 
-        .bar-container { width: 100%; margin-top: 8px; }
-        .bar-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; font-weight: 600; }
+        .bar-container { width: 100%; margin-top: 6px; }
+        .bar-label { display: flex; justify-content: space-between; font-size: 12.5px; margin-bottom: 4px; font-weight: 600; }
         .ltr-text { direction: ltr !important; unicode-bidi: isolate; }
 
         .progress-bg {
@@ -401,18 +437,29 @@
         <div id="mine-page" class="page active">
             <div class="balance-box">
                 <div class="level-badge" id="level-title">المستوى 1: الفنك الصحراوي</div>
+                
+                <div class="level-progress-box">
+                    <div class="level-progress-info">
+                        <span id="level-next-tag" style="color: var(--main-gold);">المستوى 2</span>
+                        <span id="level-remain-text" class="ltr-text">باقي 250 نقرة</span>
+                    </div>
+                    <div class="level-progress-bg">
+                        <div id="level-progress-fill" class="level-progress-fill"></div>
+                    </div>
+                </div>
+
                 <div class="balance-num">
                     <span id="gold-val">0</span>
                     <span style="color: var(--main-gold); font-size: 32px;">🪙</span>
                 </div>
-                <div style="font-size: 12px; opacity: 0.75; margin-top: 3px;" class="ltr-text">
+                <div style="font-size: 12px; opacity: 0.75; margin-top: 2px;" class="ltr-text">
                     +<span id="gold-per-sec">0</span>/sec
                 </div>
             </div>
 
             <div id="clicker-area">
                 <div id="fennec-btn" class="fennec-main-coin">
-                    <span class="fennec-face-img">🦊</span>
+                    <span id="fennec-screen-avatar" class="fennec-face-img">🦊</span>
                 </div>
             </div>
 
@@ -446,11 +493,10 @@
             </div>
         </div>
 
-        <!-- 3. قائمة المهام الموسعة (12 مهمة متوازنة ومضبوطة) -->
+        <!-- 3. المهام -->
         <div id="tasks-page" class="page">
             <h2 style="color: var(--main-gold); text-align: center; margin-bottom: 12px;" id="t-tasks-title">📋 المهام ومكافآت VIP</h2>
             
-            <!-- مهمة 1 -->
             <div class="task-card" style="border-color: #a855f7;">
                 <div>
                     <div class="task-title">👑 أسطورة الإحالات (دعوة 100 شخص)</div>
@@ -463,7 +509,6 @@
                 <button class="gold-btn" onclick="claimTask(1, 100, 2.50, 500000, 30)" id="tbtn-1">فحص</button>
             </div>
 
-            <!-- مهمة 2 -->
             <div class="task-card">
                 <div>
                     <div class="task-title">🚀 قائد المجموعة (دعوة 25 شخص)</div>
@@ -476,7 +521,6 @@
                 <button class="gold-btn" onclick="claimTask(2, 25, 1.00, 150000, 7)" id="tbtn-2">فحص</button>
             </div>
 
-            <!-- مهمة 3 -->
             <div class="task-card">
                 <div>
                     <div class="task-title">🔥 دعوة 10 أشخاص</div>
@@ -489,7 +533,6 @@
                 <button class="gold-btn" onclick="claimTask(3, 10, 0.50, 50000, 1)" id="tbtn-3">فحص</button>
             </div>
 
-            <!-- مهمة 4 -->
             <div class="task-card">
                 <div>
                     <div class="task-title">👥 دعوة 3 أصدقاء</div>
@@ -501,7 +544,6 @@
                 <button class="gold-btn" onclick="claimTask(4, 3, 0.15, 20000, 0)" id="tbtn-4">فحص</button>
             </div>
 
-            <!-- مهمة 5: الشيفرة -->
             <div class="task-card" style="flex-direction: column; align-items: stretch; gap: 6px;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div class="task-title">🔐 الشيفرة السرية اليومية</div>
@@ -516,7 +558,6 @@
                 </div>
             </div>
 
-            <!-- مهمة 6 -->
             <div class="task-card">
                 <div>
                     <div class="task-title">📢 قناة تيليجرام الرسمية</div>
@@ -528,7 +569,6 @@
                 <button class="gold-btn" onclick="openLinkTask(6, 'https://t.me/fennec_gold', 0.05, 5000)" id="tbtn-6">انضم</button>
             </div>
 
-            <!-- مهمة 7 -->
             <div class="task-card">
                 <div>
                     <div class="task-title">💬 مجموعة مجتمع اللعبة</div>
@@ -540,7 +580,6 @@
                 <button class="gold-btn" onclick="openLinkTask(7, 'https://t.me/fennec_chat', 0.05, 5000)" id="tbtn-7">انضم</button>
             </div>
 
-            <!-- مهمة 8 -->
             <div class="task-card">
                 <div>
                     <div class="task-title">🌟 الوصول إلى المستوى 5</div>
@@ -552,7 +591,6 @@
                 <button class="gold-btn" onclick="checkLevelTask(8, 5, 0.10, 30000)" id="tbtn-8">فحص</button>
             </div>
 
-            <!-- مهمة 9 -->
             <div class="task-card">
                 <div>
                     <div class="task-title">👑 الوصول إلى المستوى 10</div>
@@ -564,7 +602,6 @@
                 <button class="gold-btn" onclick="checkLevelTask(9, 10, 0.25, 50000, 3)" id="tbtn-9">فحص</button>
             </div>
 
-            <!-- مهمة 10 -->
             <div class="task-card">
                 <div>
                     <div class="task-title">⛏️ إنجاز 1,000 نقرة</div>
@@ -575,7 +612,6 @@
                 <button class="gold-btn" onclick="checkTapTask(10, 1000, 0, 10000)" id="tbtn-10">فحص</button>
             </div>
 
-            <!-- مهمة 11 -->
             <div class="task-card">
                 <div>
                     <div class="task-title">⚡️ إنجاز 5,000 نقرة</div>
@@ -587,7 +623,6 @@
                 <button class="gold-btn" onclick="checkTapTask(11, 5000, 0.05, 25000)" id="tbtn-11">فحص</button>
             </div>
 
-            <!-- مهمة 12 -->
             <div class="task-card">
                 <div>
                     <div class="task-title">🏆 إنجاز 10,000 نقرة</div>
@@ -654,7 +689,7 @@
         </div>
     </div>
 
-    <!-- نافذة البروفايل بالصور الـ 15 المحدثة -->
+    <!-- نافذة البروفايل بالصور الـ 15 المضبوطة بدقة -->
     <div id="profile-modal" class="modal">
         <div class="modal-body" style="max-width: 380px;">
             <h3 style="color: var(--main-gold); margin-bottom: 10px;" id="t-profile-title">👤 خزانة الصور الـ 15</h3>
@@ -702,36 +737,50 @@
 
         let currentLang = 'ar';
 
-        // قائمة الصور الـ 15 المحدثة: باربي، محجبة، واستبدال الأنمي بميكاسا ويور فورجر
+        // سلم الصعوبة: المستوى 2 و 3 سهلان، ومن 4 فما فوق تصبح النقاط صعبة جداً حتى تصل لـ 550,000 نقرة للمستوى 10
+        const LEVEL_THRESHOLDS = [
+            0,        // Lvl 1
+            250,      // Lvl 2 (سهل: 250 نقرة)
+            750,      // Lvl 3 (سهل: +500 نقرة)
+            2500,     // Lvl 4 (+1750 نقرة)
+            7500,     // Lvl 5 (+5000 نقرة) -> يفتح الإطار الأزرق
+            20000,    // Lvl 6 (+12500)
+            50000,    // Lvl 7 (+30000)
+            120000,   // Lvl 8 (+70000)
+            250000,   // Lvl 9 (+130000)
+            550000    // Lvl 10 (+300000 نقرة) -> يفتح الإطار البنفسجي
+        ];
+
+        // قائمة الصور الـ 15 بالترتيب والتوزيع الدقيق
         const AVATARS = [
             // 2 مجانية (إطار أخضر)
             { id: 1, name: "فنك أزرق", emoji: "🦊🧢", tier: "green", req: 0, price: 0 },
             { id: 2, name: "فنك وردي", emoji: "🦊🎀", tier: "green", req: 0, price: 0 },
             
-            // 3 مستوى 5 (إطار أزرق)
-            { id: 3, name: "فنك الجزائر 🇩🇿", emoji: "🦊🇩🇿", tier: "blue", req: 5, price: 0 },
-            { id: 4, name: "فنك أمريكا 🇺🇸", emoji: "🦊🇺🇸", tier: "blue", req: 5, price: 0 },
-            { id: 5, name: "فنك فرنسا 🇫🇷", emoji: "🦊🇫🇷", tier: "blue", req: 5, price: 0 },
+            // 3 مستوى 5 (إطار أزرق) - يلبسون قبعات: واحد أزرق، وآخر وردي، وقبعة كول
+            { id: 3, name: "فنك قبعة زرقاء", emoji: "🧢🦊", tier: "blue", req: 5, price: 0 },
+            { id: 4, name: "فنكة قبعة وردية", emoji: "👒🦊", tier: "blue", req: 5, price: 0 },
+            { id: 5, name: "فنك النظارات", emoji: "🕶️🦊", tier: "blue", req: 5, price: 0 },
             
-            // 5 مستوى 10 (إطار بنفسجي لامع) - باربي، فتاة محجبة، مع الوحوش
-            { id: 6, name: "باربي الأنيقة 👱‍♀️", emoji: "👱‍♀️🎀", tier: "purple", req: 10, price: 0 },
-            { id: 7, name: "أميرة بالحجاب 🧕", emoji: "🧕✨", tier: "purple", req: 10, price: 0 },
+            // 5 مستوى 10 (إطار بنفسجي لامع) - باربي والأميرة المحجبة بصورهم الأصلية المرفوعة
+            { id: 6, name: "باربي الأنيقة", img: "barbie.png", fallback: "👱‍♀️🎀", tier: "purple", req: 10, price: 0 },
+            { id: 7, name: "أميرة بالحجاب", img: "hijab.jpg", fallback: "🧕✨", tier: "purple", req: 10, price: 0 },
             { id: 8, name: "وحش الظلال", emoji: "👹", tier: "purple", req: 10, price: 0 },
             { id: 9, name: "زومبي الصحراء", emoji: "🧟", tier: "purple", req: 10, price: 0 },
             { id: 10, name: "مصاص الدماء", emoji: "🧛", tier: "purple", req: 10, price: 0 },
             
-            // 5 شخصيات VIP ذهبية (2.8 USDT) - غوكو، لوفي، غوجو، ميكاسا، ويور فورجر
-            { id: 11, name: "غوكو الإله الأزلي", img: "https://cdn.myanimelist.net/images/characters/3/306716.jpg", tier: "gold", req: 0, price: 2.8 },
-            { id: 12, name: "لوفي جوي بوي", img: "https://cdn.myanimelist.net/images/characters/9/310307.jpg", tier: "gold", req: 0, price: 2.8 },
-            { id: 13, name: "ميكاسا أكرمان", img: "https://cdn.myanimelist.net/images/characters/9/215563.jpg", tier: "gold", req: 0, price: 2.8 },
-            { id: 14, name: "غوجو ساتورو", img: "https://cdn.myanimelist.net/images/characters/15/422168.jpg", tier: "gold", req: 0, price: 2.8 },
-            { id: 15, name: "يور فورجر", img: "https://cdn.myanimelist.net/images/characters/9/472406.jpg", tier: "gold", req: 0, price: 2.8 }
+            // 5 شخصيات VIP ذهبية (2.8 USDT) - غوكو الإله الأزلي ويور فورجر بصورهم الأصلية المرفوعة
+            { id: 11, name: "غوكو الإله الأزلي", img: "goku.png", fallback: "⚡️", tier: "gold", req: 0, price: 2.8 },
+            { id: 12, name: "لوفي جوي بوي", img: "https://cdn.myanimelist.net/images/characters/9/310307.jpg", fallback: "☀️", tier: "gold", req: 0, price: 2.8 },
+            { id: 13, name: "يور فورجر", img: "yor.jpg", fallback: "🌹", tier: "gold", req: 0, price: 2.8 },
+            { id: 14, name: "ميكاسا أكرمان", img: "https://cdn.myanimelist.net/images/characters/9/215563.jpg", fallback: "🧣", tier: "gold", req: 0, price: 2.8 },
+            { id: 15, name: "غوجو ساتورو", img: "https://cdn.myanimelist.net/images/characters/15/422168.jpg", fallback: "👁️", tier: "gold", req: 0, price: 2.8 }
         ];
 
         const tg = window.Telegram?.WebApp;
         if (tg) { tg.expand(); tg.enableClosingConfirmation?.(); }
 
-        let game = JSON.parse(localStorage.getItem('fennec_v8_save')) || {
+        let game = JSON.parse(localStorage.getItem('fennec_v10_save')) || {
             gold: 0,
             cash: 0,
             level: 1,
@@ -748,14 +797,43 @@
 
         function getAvatarHTML(av) {
             if (av.img) {
-                return `<img src="${av.img}" alt="${av.name}" onerror="this.outerHTML='⭐'">`;
+                return `<img src="${av.img}" alt="${av.name}" onerror="this.onerror=null; this.parentElement.innerHTML='${av.fallback || '⭐'}';">`;
             }
             return av.emoji;
         }
 
         function updateUI() {
-            game.level = 1 + Math.floor(game.tapsCount / 250);
-            
+            // حساب المستوى بناءً على مصفوفة المستويات المتصاعدة
+            let curLvl = 1;
+            for (let i = 0; i < LEVEL_THRESHOLDS.length; i++) {
+                if (game.tapsCount >= LEVEL_THRESHOLDS[i]) {
+                    curLvl = i + 1;
+                } else {
+                    break;
+                }
+            }
+            game.level = curLvl;
+
+            // حساب التقدم نحو المستوى التالي
+            let nextLvlIndex = Math.min(curLvl, LEVEL_THRESHOLDS.length - 1);
+            let prevReq = LEVEL_THRESHOLDS[curLvl - 1] || 0;
+            let nextReq = LEVEL_THRESHOLDS[nextLvlIndex];
+            let remain = 0;
+            let percent = 100;
+
+            if (curLvl < LEVEL_THRESHOLDS.length) {
+                let range = nextReq - prevReq;
+                let done = game.tapsCount - prevReq;
+                remain = nextReq - game.tapsCount;
+                percent = Math.min(100, Math.max(0, (done / range) * 100));
+                document.getElementById('level-next-tag').textContent = `المستوى ${curLvl + 1}`;
+                document.getElementById('level-remain-text').textContent = `باقي ${remain.toLocaleString()} نقرة`;
+            } else {
+                document.getElementById('level-next-tag').textContent = `المستوى الأقصى 🔥`;
+                document.getElementById('level-remain-text').textContent = `مكتمل 100%`;
+            }
+
+            document.getElementById('level-progress-fill').style.width = `${percent}%`;
             document.getElementById('gold-val').textContent = Math.floor(game.gold).toLocaleString();
             document.getElementById('header-usdt').textContent = `${game.cash.toFixed(2)} USDT`;
             document.getElementById('withdraw-current-cash').textContent = `${game.cash.toFixed(2)} / 300 USDT`;
@@ -780,7 +858,7 @@
             topAvatarEl.innerHTML = getAvatarHTML(curAvatar);
             topAvatarEl.className = `avatar-circle border-${curAvatar.tier}`;
 
-            localStorage.setItem('fennec_v8_save', JSON.stringify(game));
+            localStorage.setItem('fennec_v10_save', JSON.stringify(game));
         }
 
         const fennecBtn = document.getElementById('fennec-btn');
@@ -987,7 +1065,7 @@
             game.completedTasks.push(`t_${id}`);
             game.cash += usdt;
             game.gold += gold;
-            if (vipDays > 0) game.goldPerSec += 30; // إضافة ميزة VIP التلقائية
+            if (vipDays > 0) game.goldPerSec += 30;
             document.getElementById(`tbtn-${id}`).textContent = "✓";
             document.getElementById(`tbtn-${id}`).disabled = true;
             showRewardModal("مكافأة المهمة! 🎁", `+${usdt} USDT و +${gold.toLocaleString()} 🪙 ${vipDays > 0 ? `+ VIP (${vipDays} أيام)` : ''}`);
@@ -1112,7 +1190,7 @@
 
         function resetAccount() {
             if (confirm("هل أنت متأكد من تصفير حسابك والبدء من جديد؟")) {
-                localStorage.removeItem('fennec_v8_save');
+                localStorage.removeItem('fennec_v10_save');
                 location.reload();
             }
         }
