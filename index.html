@@ -38,7 +38,6 @@
             height: 100vh;
         }
 
-        /* الشريط العلوي */
         .top-bar {
             display: flex;
             justify-content: space-between;
@@ -67,7 +66,15 @@
             font-size: 22px;
             background: #1e293b;
             position: relative;
-            transition: transform 0.2s;
+            overflow: hidden;
+        }
+
+        .avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
         }
 
         .avatar-circle.border-green { border: 2.5px solid #22c55e; box-shadow: 0 0 10px rgba(34, 197, 94, 0.5); }
@@ -109,7 +116,6 @@
             cursor: pointer;
         }
 
-        /* الصفحات والتنقل */
         #pages-container {
             flex-grow: 1;
             overflow-y: auto;
@@ -123,16 +129,9 @@
             min-height: 100%;
         }
 
-        .page.active {
-            display: flex;
-        }
+        .page.active { display: flex; }
 
-        /* شاشة التعدين */
-        .balance-box {
-            text-align: center;
-            margin-top: 4px;
-        }
-
+        .balance-box { text-align: center; margin-top: 4px; }
         .level-badge {
             display: inline-block;
             background: var(--gold-gradient);
@@ -180,17 +179,11 @@
             box-shadow: 0 0 60px rgba(245, 158, 11, 0.4), inset 0 0 20px rgba(0,0,0,0.4);
             cursor: pointer;
             transition: transform 0.08s ease-out;
+            overflow: hidden;
         }
 
-        .fennec-main-coin:active {
-            transform: scale(0.93);
-        }
-
-        .fennec-face-img {
-            font-size: 125px;
-            line-height: 1;
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
-        }
+        .fennec-main-coin:active { transform: scale(0.93); }
+        .fennec-face-img { font-size: 125px; line-height: 1; }
 
         .click-number {
             position: absolute;
@@ -208,24 +201,9 @@
             100% { transform: translateY(-75px) scale(0.8); opacity: 0; }
         }
 
-        /* الطاقة ومستوى النقر */
-        .bar-container {
-            width: 100%;
-            margin-top: 8px;
-        }
-
-        .bar-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-
-        .ltr-text {
-            direction: ltr !important;
-            unicode-bidi: isolate;
-        }
+        .bar-container { width: 100%; margin-top: 8px; }
+        .bar-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; font-weight: 600; }
+        .ltr-text { direction: ltr !important; unicode-bidi: isolate; }
 
         .progress-bg {
             width: 100%;
@@ -242,7 +220,6 @@
             transition: width 0.15s ease-out;
         }
 
-        /* عجلة الحظ المزخرفة */
         .wheel-box {
             display: flex;
             flex-direction: column;
@@ -280,7 +257,6 @@
             transition: transform 4.5s cubic-bezier(0.15, 0.9, 0.2, 1);
         }
 
-        /* البطاقات والأزرار الموحدة */
         .card {
             background: var(--card-bg);
             border-radius: 14px;
@@ -294,9 +270,9 @@
             border: none;
             color: #000;
             font-weight: 900;
-            padding: 10px 16px;
+            padding: 8px 14px;
             border-radius: 12px;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
             display: inline-flex;
             justify-content: center;
@@ -304,57 +280,31 @@
             gap: 6px;
         }
 
-        .gold-btn:disabled {
-            opacity: 0.45;
-            cursor: not-allowed;
-            background: #334155;
-            color: #94a3b8;
-        }
+        .gold-btn:disabled { opacity: 0.45; cursor: not-allowed; background: #334155; color: #94a3b8; }
 
-        /* عناصر قائمة المهام المنظمة */
         .task-card {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 14px;
+            padding: 10px 12px;
             background: var(--card-bg);
-            border-radius: 14px;
-            margin-bottom: 8px;
+            border-radius: 12px;
+            margin-bottom: 7px;
             border: 1px solid rgba(255,255,255,0.06);
             gap: 8px;
         }
 
-        .task-title {
-            font-size: 13px;
-            font-weight: 800;
-            margin-bottom: 4px;
-        }
-
-        .task-tags {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            direction: ltr;
-        }
-
-        .tag-pill {
-            font-size: 11px;
-            font-weight: 800;
-            padding: 2px 8px;
-            border-radius: 6px;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-
+        .task-title { font-size: 12.5px; font-weight: 800; margin-bottom: 3px; }
+        .task-tags { display: flex; gap: 5px; flex-wrap: wrap; direction: ltr; }
+        .tag-pill { font-size: 10.5px; font-weight: 800; padding: 2px 7px; border-radius: 6px; }
         .tag-gold { background: rgba(245, 158, 11, 0.15); color: var(--main-gold); border: 1px solid rgba(245, 158, 11, 0.3); }
         .tag-usdt { background: rgba(16, 185, 129, 0.15); color: var(--green-usdt); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .tag-vip { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
 
-        /* شبكة الصور للبروفايل */
         .avatar-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 10px;
             max-height: 380px;
             overflow-y: auto;
             padding: 6px;
@@ -363,28 +313,19 @@
         .avatar-pick-card {
             background: #1e293b;
             border-radius: 12px;
-            padding: 10px 6px;
+            padding: 8px 4px;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             cursor: pointer;
             border: 2px solid transparent;
-            position: relative;
         }
 
-        .avatar-pick-card.unlocked { border-color: rgba(255,255,255,0.2); }
-        .avatar-pick-card.active-border { border-color: #fff !important; transform: scale(1.05); }
+        .avatar-pick-card.active-border { border-color: #fff !important; transform: scale(1.04); }
+        .tier-label { font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 4px; }
 
-        .tier-label {
-            font-size: 10px;
-            font-weight: 800;
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-
-        /* شريط القوائم السفلي */
         #nav-bar {
             position: fixed;
             bottom: 0; left: 0; right: 0;
@@ -412,7 +353,6 @@
         .nav-item.active { color: var(--main-gold); }
         .nav-icon { font-size: 20px; }
 
-        /* النوافذ العائمة (Modals) */
         .modal {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -439,9 +379,7 @@
 </head>
 <body>
 
-    <!-- الشريط العلوي الاحترافي -->
     <div class="top-bar">
-        <!-- قسم البروفايل والصورة الشخصية -->
         <div class="profile-btn-wrap" onclick="openProfileModal()">
             <div id="user-top-avatar" class="avatar-circle border-green">🦊</div>
             <div style="text-align: right;">
@@ -450,19 +388,15 @@
             </div>
         </div>
 
-        <!-- رصيد USDT الفوري -->
         <div class="cash-pill" onclick="switchPage('exchange')">
             <span>💵</span>
             <span id="header-usdt">0.00 USDT</span>
         </div>
 
-        <!-- زر الإعدادات واللغات -->
         <div class="settings-icon-btn" onclick="openSettingsModal()">⚙️</div>
     </div>
 
-    <!-- حاوية الصفحات الرئيسية -->
     <div id="pages-container">
-
         <!-- 1. صفحة التعدين -->
         <div id="mine-page" class="page active">
             <div class="balance-box">
@@ -482,7 +416,6 @@
                 </div>
             </div>
 
-            <!-- عداد الطاقة المصحح -->
             <div class="bar-container">
                 <div class="bar-label">
                     <span id="t-energy">⚡️ الطاقة</span>
@@ -494,7 +427,7 @@
             </div>
         </div>
 
-        <!-- 2. عجلة الحظ المزخرفة -->
+        <!-- 2. عجلة الحظ -->
         <div id="wheel-page" class="page">
             <div style="text-align: center; margin-bottom: 8px;">
                 <h2 style="color: var(--main-gold);" id="t-wheel-title">🎡 عجلة الحظ الملكية</h2>
@@ -513,86 +446,164 @@
             </div>
         </div>
 
-        <!-- 3. صفحة المهام المنظمة والمتقنة -->
+        <!-- 3. قائمة المهام الموسعة (12 مهمة متوازنة ومضبوطة) -->
         <div id="tasks-page" class="page">
-            <h2 style="color: var(--main-gold); text-align: center; margin-bottom: 12px;" id="t-tasks-title">📋 قائمة المهام والمكافآت</h2>
+            <h2 style="color: var(--main-gold); text-align: center; margin-bottom: 12px;" id="t-tasks-title">📋 المهام ومكافآت VIP</h2>
             
-            <div class="task-card" style="border-color: var(--green-usdt);">
+            <!-- مهمة 1 -->
+            <div class="task-card" style="border-color: #a855f7;">
                 <div>
-                    <div class="task-title">👑 إحالة 100 شخص (VIP)</div>
+                    <div class="task-title">👑 أسطورة الإحالات (دعوة 100 شخص)</div>
                     <div class="task-tags">
-                        <span class="tag-pill tag-usdt">+30.00 USDT</span>
+                        <span class="tag-pill tag-usdt">+2.50 USDT</span>
+                        <span class="tag-pill tag-vip">VIP 30 يوم</span>
                         <span class="tag-pill tag-gold">+500,000 🪙</span>
                     </div>
                 </div>
-                <button class="gold-btn" onclick="claimTask(1, 100, 30, 500000)" id="tbtn-1">فحص</button>
+                <button class="gold-btn" onclick="claimTask(1, 100, 2.50, 500000, 30)" id="tbtn-1">فحص</button>
             </div>
 
+            <!-- مهمة 2 -->
             <div class="task-card">
                 <div>
-                    <div class="task-title">🚀 إحالة 25 شخص</div>
+                    <div class="task-title">🚀 قائد المجموعة (دعوة 25 شخص)</div>
                     <div class="task-tags">
-                        <span class="tag-pill tag-usdt">+8.00 USDT</span>
+                        <span class="tag-pill tag-usdt">+1.00 USDT</span>
+                        <span class="tag-pill tag-vip">VIP 7 أيام</span>
                         <span class="tag-pill tag-gold">+150,000 🪙</span>
                     </div>
                 </div>
-                <button class="gold-btn" onclick="claimTask(2, 25, 8, 150000)" id="tbtn-2">فحص</button>
+                <button class="gold-btn" onclick="claimTask(2, 25, 1.00, 150000, 7)" id="tbtn-2">فحص</button>
             </div>
 
+            <!-- مهمة 3 -->
             <div class="task-card">
                 <div>
-                    <div class="task-title">🔥 إحالة 10 أشخاص</div>
+                    <div class="task-title">🔥 دعوة 10 أشخاص</div>
                     <div class="task-tags">
-                        <span class="tag-pill tag-usdt">+3.00 USDT</span>
+                        <span class="tag-pill tag-usdt">+0.50 USDT</span>
+                        <span class="tag-pill tag-vip">VIP 1 يوم</span>
                         <span class="tag-pill tag-gold">+50,000 🪙</span>
                     </div>
                 </div>
-                <button class="gold-btn" onclick="claimTask(3, 10, 3, 50000)" id="tbtn-3">فحص</button>
+                <button class="gold-btn" onclick="claimTask(3, 10, 0.50, 50000, 1)" id="tbtn-3">فحص</button>
             </div>
 
+            <!-- مهمة 4 -->
             <div class="task-card">
                 <div>
-                    <div class="task-title">👥 إحالة 3 أصدقاء</div>
+                    <div class="task-title">👥 دعوة 3 أصدقاء</div>
                     <div class="task-tags">
-                        <span class="tag-pill tag-usdt">+1.00 USDT</span>
-                        <span class="tag-pill tag-gold">+15,000 🪙</span>
+                        <span class="tag-pill tag-usdt">+0.15 USDT</span>
+                        <span class="tag-pill tag-gold">+20,000 🪙</span>
                     </div>
                 </div>
-                <button class="gold-btn" onclick="claimTask(4, 3, 1, 15000)" id="tbtn-4">فحص</button>
+                <button class="gold-btn" onclick="claimTask(4, 3, 0.15, 20000, 0)" id="tbtn-4">فحص</button>
             </div>
 
-            <!-- الشيفرة اليومية المخفضة إلى 15k -->
-            <div class="task-card" style="flex-direction: column; align-items: stretch; gap: 8px;">
+            <!-- مهمة 5: الشيفرة -->
+            <div class="task-card" style="flex-direction: column; align-items: stretch; gap: 6px;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div class="task-title">🔐 الشيفرة السرية اليومية</div>
                     <div class="task-tags">
-                        <span class="tag-pill tag-usdt">+0.20 USDT</span>
+                        <span class="tag-pill tag-usdt">+0.05 USDT</span>
                         <span class="tag-pill tag-gold">+15,000 🪙</span>
                     </div>
                 </div>
                 <div style="display: flex; gap: 6px;">
-                    <input type="text" id="cipher-input" placeholder="الرمز السري (FENNEC26)" style="flex: 1; padding: 8px; border-radius: 8px; border: 1px solid #334155; background: #060911; color: #fff; text-align: center; text-transform: uppercase;">
+                    <input type="text" id="cipher-input" placeholder="الرمز (FENNEC26)" style="flex: 1; padding: 7px; border-radius: 8px; border: 1px solid #334155; background: #060911; color: #fff; text-align: center; text-transform: uppercase;">
                     <button class="gold-btn" onclick="checkCipher()">تحقق</button>
                 </div>
             </div>
 
+            <!-- مهمة 6 -->
             <div class="task-card">
                 <div>
                     <div class="task-title">📢 قناة تيليجرام الرسمية</div>
                     <div class="task-tags">
-                        <span class="tag-pill tag-usdt">+0.20 USDT</span>
+                        <span class="tag-pill tag-usdt">+0.05 USDT</span>
                         <span class="tag-pill tag-gold">+5,000 🪙</span>
                     </div>
                 </div>
-                <button class="gold-btn" onclick="openLinkTask(5, 'https://t.me/fennec_gold', 0.2, 5000)" id="tbtn-5">انضم</button>
+                <button class="gold-btn" onclick="openLinkTask(6, 'https://t.me/fennec_gold', 0.05, 5000)" id="tbtn-6">انضم</button>
+            </div>
+
+            <!-- مهمة 7 -->
+            <div class="task-card">
+                <div>
+                    <div class="task-title">💬 مجموعة مجتمع اللعبة</div>
+                    <div class="task-tags">
+                        <span class="tag-pill tag-usdt">+0.05 USDT</span>
+                        <span class="tag-pill tag-gold">+5,000 🪙</span>
+                    </div>
+                </div>
+                <button class="gold-btn" onclick="openLinkTask(7, 'https://t.me/fennec_chat', 0.05, 5000)" id="tbtn-7">انضم</button>
+            </div>
+
+            <!-- مهمة 8 -->
+            <div class="task-card">
+                <div>
+                    <div class="task-title">🌟 الوصول إلى المستوى 5</div>
+                    <div class="task-tags">
+                        <span class="tag-pill tag-usdt">+0.10 USDT</span>
+                        <span class="tag-pill tag-gold">+30,000 🪙</span>
+                    </div>
+                </div>
+                <button class="gold-btn" onclick="checkLevelTask(8, 5, 0.10, 30000)" id="tbtn-8">فحص</button>
+            </div>
+
+            <!-- مهمة 9 -->
+            <div class="task-card">
+                <div>
+                    <div class="task-title">👑 الوصول إلى المستوى 10</div>
+                    <div class="task-tags">
+                        <span class="tag-pill tag-usdt">+0.25 USDT</span>
+                        <span class="tag-pill tag-vip">VIP 3 أيام</span>
+                    </div>
+                </div>
+                <button class="gold-btn" onclick="checkLevelTask(9, 10, 0.25, 50000, 3)" id="tbtn-9">فحص</button>
+            </div>
+
+            <!-- مهمة 10 -->
+            <div class="task-card">
+                <div>
+                    <div class="task-title">⛏️ إنجاز 1,000 نقرة</div>
+                    <div class="task-tags">
+                        <span class="tag-pill tag-gold">+10,000 🪙</span>
+                    </div>
+                </div>
+                <button class="gold-btn" onclick="checkTapTask(10, 1000, 0, 10000)" id="tbtn-10">فحص</button>
+            </div>
+
+            <!-- مهمة 11 -->
+            <div class="task-card">
+                <div>
+                    <div class="task-title">⚡️ إنجاز 5,000 نقرة</div>
+                    <div class="task-tags">
+                        <span class="tag-pill tag-usdt">+0.05 USDT</span>
+                        <span class="tag-pill tag-gold">+25,000 🪙</span>
+                    </div>
+                </div>
+                <button class="gold-btn" onclick="checkTapTask(11, 5000, 0.05, 25000)" id="tbtn-11">فحص</button>
+            </div>
+
+            <!-- مهمة 12 -->
+            <div class="task-card">
+                <div>
+                    <div class="task-title">🏆 إنجاز 10,000 نقرة</div>
+                    <div class="task-tags">
+                        <span class="tag-pill tag-usdt">+0.10 USDT</span>
+                        <span class="tag-pill tag-vip">VIP 1 يوم</span>
+                    </div>
+                </div>
+                <button class="gold-btn" onclick="checkTapTask(12, 10000, 0.10, 50000, 1)" id="tbtn-12">فحص</button>
             </div>
         </div>
 
-        <!-- 4. منصة التحويل والتصريف (Exchange & Auto-Tap VIP) -->
+        <!-- 4. التصريف والـ VIP -->
         <div id="exchange-page" class="page">
             <h2 style="color: var(--green-usdt); text-align: center; margin-bottom: 12px;" id="t-ex-title">💱 تصريف النقاط والـ VIP</h2>
             
-            <!-- تحويل 3 مليون نقطة إلى 90 دولار -->
             <div class="card" style="border: 2px solid var(--green-usdt); text-align: center;">
                 <div style="font-size: 13px; opacity: 0.85;">تحويل الرصيد المباشر:</div>
                 <div style="font-size: 26px; font-weight: 900; margin: 8px 0; color: #fff;" class="ltr-text">
@@ -603,10 +614,9 @@
                 </button>
             </div>
 
-            <!-- متجر النقر التلقائي VIP -->
             <div class="card">
                 <b style="color: var(--main-gold); font-size: 14px;">⚡️ اشتراكات النقر التلقائي VIP</b>
-                <p style="font-size: 12px; opacity: 0.8; margin: 5px 0 10px;">يقوم البوت بالنقر وتجميع العملات تلقائياً حتى وأنت نائم!</p>
+                <p style="font-size: 12px; opacity: 0.8; margin: 5px 0 10px;">يقوم البوت بالتعدين التلقائي أثناء إغلاق اللعبة!</p>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
                     <button class="gold-btn" onclick="buyAutoTap('يوم', 0.5)">1 يوم: 0.50$</button>
                     <button class="gold-btn" onclick="buyAutoTap('أسبوع', 1.99)">أسبوع: 1.99$</button>
@@ -615,19 +625,16 @@
                 </div>
             </div>
 
-            <!-- طلب السحب -->
             <div class="card">
-                <b id="t-withdraw-limit">شرط السحب (الحد الأدنى: 300 USDT)</b>
+                <b>شرط السحب (الحد الأدنى: 300 USDT)</b>
                 <div style="font-size: 18px; font-weight: 900; color: var(--green-usdt); margin: 6px 0;" id="withdraw-current-cash" class="ltr-text">0.00 / 300 USDT</div>
                 <button class="gold-btn" style="width: 100%; background: #334155; color: #94a3b8;" disabled id="withdraw-exec-btn">
                     🔒 فتح طلب السحب (غير مؤهل)
                 </button>
             </div>
         </div>
-
     </div>
 
-    <!-- شريط القائمة السفلي -->
     <div id="nav-bar">
         <div class="nav-item active" onclick="switchPage('mine')">
             <span class="nav-icon">⛏️</span>
@@ -647,41 +654,32 @@
         </div>
     </div>
 
-    <!-- نافذة البروفايل والصور (15 صورة مقسمة للرتب) -->
+    <!-- نافذة البروفايل بالصور الـ 15 المحدثة -->
     <div id="profile-modal" class="modal">
         <div class="modal-body" style="max-width: 380px;">
             <h3 style="color: var(--main-gold); margin-bottom: 10px;" id="t-profile-title">👤 خزانة الصور الـ 15</h3>
-            
-            <div class="avatar-grid" id="avatars-container">
-                <!-- يتم توليد الـ 15 صورة ديناميكياً بالجافاسكريبت -->
-            </div>
-
+            <div class="avatar-grid" id="avatars-container"></div>
             <button class="gold-btn" style="width: 100%; margin-top: 12px;" onclick="closeModal('profile-modal')">إغلاق</button>
         </div>
     </div>
 
-    <!-- نافذة الإعدادات واللغة -->
+    <!-- نافذة الإعدادات -->
     <div id="settings-modal" class="modal">
         <div class="modal-body">
-            <h3 style="color: var(--main-gold); margin-bottom: 15px;" id="t-settings-title">⚙️ إعدادات الحساب</h3>
-            
+            <h3 style="color: var(--main-gold); margin-bottom: 15px;">⚙️ إعدادات الحساب</h3>
             <div class="card" style="text-align: right; margin-bottom: 12px;">
                 <div><b>المعرف:</b> <span id="setting-user-id" class="ltr-text">@player</span></div>
                 <div><b>الرتبة:</b> <span id="setting-user-level" style="color: var(--main-gold);">المستوى 1</span></div>
             </div>
-
             <div style="margin-bottom: 15px;">
-                <div style="font-size: 13px; font-weight: bold; margin-bottom: 6px;" id="t-choose-lang">🌐 اختيار لغة اللعبة:</div>
+                <div style="font-size: 13px; font-weight: bold; margin-bottom: 6px;">🌐 اختيار لغة اللعبة:</div>
                 <div style="display: flex; gap: 6px; justify-content: center;">
                     <button class="gold-btn" onclick="setLanguage('ar')">العربية</button>
                     <button class="gold-btn" onclick="setLanguage('en')">English</button>
                     <button class="gold-btn" onclick="setLanguage('fr')">Français</button>
                 </div>
             </div>
-
-            <button class="gold-btn" style="width: 100%; background: #ef4444; color: #fff; margin-bottom: 8px;" onclick="resetAccount()">
-                🚪 خروج وتصفير الحساب
-            </button>
+            <button class="gold-btn" style="width: 100%; background: #ef4444; color: #fff; margin-bottom: 8px;" onclick="resetAccount()">🚪 خروج وتصفير الحساب</button>
             <button class="gold-btn" style="width: 100%; background: #334155; color: #fff;" onclick="closeModal('settings-modal')">إغلاق</button>
         </div>
     </div>
@@ -696,79 +694,44 @@
     </div>
 
     <script>
-        // --- 1. الترجمات الشاملة (AR, EN, FR) ---
         const i18n = {
-            ar: {
-                dir: 'rtl',
-                energy: '⚡️ الطاقة',
-                wheelTitle: '🎡 عجلة الحظ الملكية',
-                wheelSub: 'لفة مجانية كل 24 ساعة - جوائز USDT فورية وذهب!',
-                tasksTitle: '📋 قائمة المهام والمكافآت',
-                exTitle: '💱 تصريف النقاط والـ VIP',
-                profileTitle: '👤 خزانة الصور الـ 15',
-                settingsTitle: '⚙️ إعدادات الحساب',
-                navMine: 'تعدين', navWheel: 'العجلة', navTasks: 'المهام', navEx: 'التصريف',
-                free: 'مجاني', lvl5: 'مستوى 5', lvl10: 'مستوى 10', buy: '2.8 USDT'
-            },
-            en: {
-                dir: 'ltr',
-                energy: '⚡️ Energy',
-                wheelTitle: '🎡 Royal Lucky Wheel',
-                wheelSub: '1 Free spin daily - Instant USDT & Gold rewards!',
-                tasksTitle: '📋 Tasks & Bounty List',
-                exTitle: '💱 Coin Exchange & VIP',
-                profileTitle: '👤 15 Avatar Gallery',
-                settingsTitle: '⚙️ Account Settings',
-                navMine: 'Mine', navWheel: 'Wheel', navTasks: 'Tasks', navEx: 'Exchange',
-                free: 'Free', lvl5: 'Lvl 5', lvl10: 'Lvl 10', buy: '2.8 USDT'
-            },
-            fr: {
-                dir: 'ltr',
-                energy: '⚡️ Énergie',
-                wheelTitle: '🎡 Roue de la Fortune Royale',
-                wheelSub: '1 Tour gratuit toutes les 24h - USDT & Or!',
-                tasksTitle: '📋 Tâches & Récompenses',
-                exTitle: '💱 Échange de Pièces & VIP',
-                profileTitle: '👤 Galerie des 15 Avatars',
-                settingsTitle: '⚙️ Paramètres du Compte',
-                navMine: 'Miner', navWheel: 'Roue', navTasks: 'Tâches', navEx: 'Échange',
-                free: 'Gratuit', lvl5: 'Niv 5', lvl10: 'Niv 10', buy: '2.8 USDT'
-            }
+            ar: { dir: 'rtl', energy: '⚡️ الطاقة', wheelTitle: '🎡 عجلة الحظ الملكية', wheelSub: 'لفة مجانية كل 24 ساعة - جوائز USDT فورية وذهب!', tasksTitle: '📋 المهام ومكافآت VIP', exTitle: '💱 تصريف النقاط والـ VIP', profileTitle: '👤 خزانة الصور الـ 15', navMine: 'تعدين', navWheel: 'العجلة', navTasks: 'المهام', navEx: 'التصريف' },
+            en: { dir: 'ltr', energy: '⚡️ Energy', wheelTitle: '🎡 Royal Lucky Wheel', wheelSub: '1 Free spin daily - Instant USDT & Gold rewards!', tasksTitle: '📋 Tasks & VIP Rewards', exTitle: '💱 Coin Exchange & VIP', profileTitle: '👤 15 Avatar Gallery', navMine: 'Mine', navWheel: 'Wheel', navTasks: 'Tasks', navEx: 'Exchange' },
+            fr: { dir: 'ltr', energy: '⚡️ Énergie', wheelTitle: '🎡 Roue de la Fortune Royale', wheelSub: '1 Tour gratuit toutes les 24h - USDT & Or!', tasksTitle: '📋 Tâches & Récompenses VIP', exTitle: '💱 Échange de Pièces & VIP', profileTitle: '👤 Galerie des 15 Avatars', navMine: 'Miner', navWheel: 'Roue', navTasks: 'Tâches', navEx: 'Échange' }
         };
 
         let currentLang = 'ar';
 
-        // --- 2. بيانات الـ 15 صورة للبروفايل بدقة وتفصيل ---
+        // قائمة الصور الـ 15 المحدثة: باربي، محجبة، واستبدال الأنمي بميكاسا ويور فورجر
         const AVATARS = [
             // 2 مجانية (إطار أخضر)
-            { id: 1, name: "فنك أزرق (ولد)", emoji: "🦊🧢", tier: "green", req: 0, price: 0 },
-            { id: 2, name: "فنك وردي (بنت)", emoji: "🦊🎀", tier: "green", req: 0, price: 0 },
+            { id: 1, name: "فنك أزرق", emoji: "🦊🧢", tier: "green", req: 0, price: 0 },
+            { id: 2, name: "فنك وردي", emoji: "🦊🎀", tier: "green", req: 0, price: 0 },
+            
             // 3 مستوى 5 (إطار أزرق)
             { id: 3, name: "فنك الجزائر 🇩🇿", emoji: "🦊🇩🇿", tier: "blue", req: 5, price: 0 },
             { id: 4, name: "فنك أمريكا 🇺🇸", emoji: "🦊🇺🇸", tier: "blue", req: 5, price: 0 },
             { id: 5, name: "فنك فرنسا 🇫🇷", emoji: "🦊🇫🇷", tier: "blue", req: 5, price: 0 },
-            // 5 مستوى 10 (إطار بنفسجي لامع)
-            { id: 6, name: "وحش الظلال", emoji: "👹", tier: "purple", req: 10, price: 0 },
-            { id: 7, name: "الذئب الصحراوي", emoji: "🐺", tier: "purple", req: 10, price: 0 },
-            { id: 8, name: "زومبي الصحراء", emoji: "🧟", tier: "purple", req: 10, price: 0 },
-            { id: 9, name: "مصاص الدماء", emoji: "🧛", tier: "purple", req: 10, price: 0 },
-            { id: 10, name: "طفل الظلال الساقط", emoji: "🦇", tier: "purple", req: 10, price: 0 },
-            // 5 صور VIP ذهبية (2.8 USDT)
-            { id: 11, name: "غوكو الإله الأزلي", emoji: "⚡️", tier: "gold", req: 0, price: 2.8 },
-            { id: 12, name: "لوفي جوي بوي", emoji: "☀️", tier: "gold", req: 0, price: 2.8 },
-            { id: 13, name: "غابيمارو الغاضب", emoji: "⚔️", tier: "gold", req: 0, price: 2.8 },
-            { id: 14, name: "غوجو ساتورو", emoji: "👁️", tier: "gold", req: 0, price: 2.8 },
-            { id: 15, name: "ليفاي أكرمان", emoji: "🗡️", tier: "gold", req: 0, price: 2.8 }
+            
+            // 5 مستوى 10 (إطار بنفسجي لامع) - باربي، فتاة محجبة، مع الوحوش
+            { id: 6, name: "باربي الأنيقة 👱‍♀️", emoji: "👱‍♀️🎀", tier: "purple", req: 10, price: 0 },
+            { id: 7, name: "أميرة بالحجاب 🧕", emoji: "🧕✨", tier: "purple", req: 10, price: 0 },
+            { id: 8, name: "وحش الظلال", emoji: "👹", tier: "purple", req: 10, price: 0 },
+            { id: 9, name: "زومبي الصحراء", emoji: "🧟", tier: "purple", req: 10, price: 0 },
+            { id: 10, name: "مصاص الدماء", emoji: "🧛", tier: "purple", req: 10, price: 0 },
+            
+            // 5 شخصيات VIP ذهبية (2.8 USDT) - غوكو، لوفي، غوجو، ميكاسا، ويور فورجر
+            { id: 11, name: "غوكو الإله الأزلي", img: "https://cdn.myanimelist.net/images/characters/3/306716.jpg", tier: "gold", req: 0, price: 2.8 },
+            { id: 12, name: "لوفي جوي بوي", img: "https://cdn.myanimelist.net/images/characters/9/310307.jpg", tier: "gold", req: 0, price: 2.8 },
+            { id: 13, name: "ميكاسا أكرمان", img: "https://cdn.myanimelist.net/images/characters/9/215563.jpg", tier: "gold", req: 0, price: 2.8 },
+            { id: 14, name: "غوجو ساتورو", img: "https://cdn.myanimelist.net/images/characters/15/422168.jpg", tier: "gold", req: 0, price: 2.8 },
+            { id: 15, name: "يور فورجر", img: "https://cdn.myanimelist.net/images/characters/9/472406.jpg", tier: "gold", req: 0, price: 2.8 }
         ];
 
-        // --- 3. حالة اللعبة وحفظ البيانات ---
         const tg = window.Telegram?.WebApp;
-        if (tg) {
-            tg.expand();
-            tg.enableClosingConfirmation?.();
-        }
+        if (tg) { tg.expand(); tg.enableClosingConfirmation?.(); }
 
-        let game = JSON.parse(localStorage.getItem('fennec_v5_save')) || {
+        let game = JSON.parse(localStorage.getItem('fennec_v8_save')) || {
             gold: 0,
             cash: 0,
             level: 1,
@@ -783,16 +746,20 @@
             completedTasks: []
         };
 
-        // --- 4. تحديث الواجهة وعلاج العداد المعكوس ---
+        function getAvatarHTML(av) {
+            if (av.img) {
+                return `<img src="${av.img}" alt="${av.name}" onerror="this.outerHTML='⭐'">`;
+            }
+            return av.emoji;
+        }
+
         function updateUI() {
-            // حساب المستوى بناءً على النقر
             game.level = 1 + Math.floor(game.tapsCount / 250);
             
             document.getElementById('gold-val').textContent = Math.floor(game.gold).toLocaleString();
             document.getElementById('header-usdt').textContent = `${game.cash.toFixed(2)} USDT`;
             document.getElementById('withdraw-current-cash').textContent = `${game.cash.toFixed(2)} / 300 USDT`;
             
-            // إصلاح عداد الطاقة المعكوس عبر ضبط صريح لـ LTR
             document.getElementById('energy-text').textContent = `${game.energy} / ${game.maxEnergy}`;
             document.getElementById('energy-fill').style.width = `${(game.energy / game.maxEnergy) * 100}%`;
             document.getElementById('gold-per-sec').textContent = game.goldPerSec;
@@ -800,7 +767,6 @@
             document.getElementById('level-title').textContent = `المستوى ${game.level}: الفنك الصحراوي`;
             document.getElementById('setting-user-level').textContent = `المستوى ${game.level}`;
 
-            // تفعيل زر السحب عند الوصول لـ 300 دولار
             const wbtn = document.getElementById('withdraw-exec-btn');
             if (game.cash >= 300) {
                 wbtn.disabled = false;
@@ -809,16 +775,14 @@
                 wbtn.textContent = "✅ طلب سحب 300 USDT فوراً";
             }
 
-            // تحديث بروفايل اللاعب العلوي
             const curAvatar = AVATARS.find(a => a.id === game.selectedAvatarId) || AVATARS[0];
             const topAvatarEl = document.getElementById('user-top-avatar');
-            topAvatarEl.textContent = curAvatar.emoji;
+            topAvatarEl.innerHTML = getAvatarHTML(curAvatar);
             topAvatarEl.className = `avatar-circle border-${curAvatar.tier}`;
 
-            localStorage.setItem('fennec_v5_save', JSON.stringify(game));
+            localStorage.setItem('fennec_v8_save', JSON.stringify(game));
         }
 
-        // --- 5. النقر المتعدد وإضافة الذهب وحساب المستوى ---
         const fennecBtn = document.getElementById('fennec-btn');
         const clickerArea = document.getElementById('clicker-area');
 
@@ -849,7 +813,6 @@
             setTimeout(() => el.remove(), 800);
         }
 
-        // استعادة الطاقة الهادئة (نقطة كل ثانية ونصف)
         setInterval(() => {
             if (game.energy < game.maxEnergy) {
                 game.energy = Math.min(game.maxEnergy, game.energy + 1);
@@ -857,7 +820,6 @@
             }
         }, 1500);
 
-        // التعدين التلقائي
         setInterval(() => {
             if (game.goldPerSec > 0) {
                 game.gold += game.goldPerSec;
@@ -865,7 +827,6 @@
             }
         }, 1000);
 
-        // --- 6. فيزياء عجلة الحظ الدقيقة والمزخرفة (100% مطابقة للنتيجة) ---
         const canvas = document.getElementById('wheel-canvas');
         const ctx = canvas.getContext('2d');
 
@@ -900,7 +861,6 @@
                 ctx.strokeStyle = '#ffe259';
                 ctx.stroke();
 
-                // رسم النص بدقة عند الأطراف الخارجية
                 ctx.save();
                 ctx.translate(center, center);
                 ctx.rotate(angle + arc / 2);
@@ -913,7 +873,6 @@
                 ctx.restore();
             });
 
-            // مركز العجلة الذهبي
             ctx.beginPath();
             ctx.arc(center, center, 45, 0, 2 * Math.PI);
             ctx.fillStyle = '#1e293b';
@@ -931,7 +890,7 @@
         function spinWheel() {
             const now = Date.now();
             if (now - game.lastWheelSpin < 24 * 3600 * 1000) {
-                alert("لقد استخدمت لفتك لليوم!");
+                alert("لقد استخدمت لفتك المجانية لليوم!");
                 return;
             }
             if (isSpinning) return;
@@ -939,15 +898,13 @@
             isSpinning = true;
             document.getElementById('spin-btn').disabled = true;
 
-            // تحديد الجائزة مسبقاً (استبعاد الخسارة غالباً للحفاظ على متعة اللاعب)
             const winIndices = [0, 1, 2, 4, 5];
             const targetIndex = winIndices[Math.floor(Math.random() * winIndices.length)];
 
-            // الحساب الرياضي الدقيق لزاوية التوقف عند السهم العلوي (270 درجة)
             const arcDeg = 360 / SECTORS.length;
             const sectorMidDeg = (targetIndex * arcDeg) + (arcDeg / 2);
             const targetRotationAtTop = (270 - sectorMidDeg + 360) % 360;
-            const fullSpins = 360 * 8; // 8 دورات فخمة وسريعة
+            const fullSpins = 360 * 8;
 
             wheelRotation += (fullSpins + targetRotationAtTop);
             canvas.style.transform = `rotate(${wheelRotation}deg)`;
@@ -985,7 +942,6 @@
             }
         }
 
-        // --- 7. تحويل 3,000,000 نقطة إلى 90.00 USDT ---
         function exchangeCoinsToCash() {
             if (game.gold >= 3000000) {
                 game.gold -= 3000000;
@@ -998,11 +954,10 @@
             }
         }
 
-        // --- 8. شراء اشتراك النقر التلقائي VIP ---
         function buyAutoTap(plan, price) {
             if (game.cash >= price) {
                 game.cash -= price;
-                game.goldPerSec += 50; // يضيف 50 ذهبة في الثانية تلقائياً
+                game.goldPerSec += 50;
                 showRewardModal("تم التفعيل! ⚡️", `تم تفعيل اشتراك النقر التلقائي (${plan}) بنجاح!`);
                 updateUI();
             } else {
@@ -1010,15 +965,14 @@
             }
         }
 
-        // --- 9. التحقق من المهام والشيفرة ---
         function checkCipher() {
             const code = document.getElementById('cipher-input').value.trim().toUpperCase();
             if (code === 'FENNEC26') {
                 if (!game.completedTasks.includes('cipher')) {
                     game.completedTasks.push('cipher');
                     game.gold += 15000;
-                    game.cash += 0.20;
-                    showRewardModal("شيفرة صحيحة! 🔓", "+15,000 🪙 و +0.20 USDT");
+                    game.cash += 0.05;
+                    showRewardModal("شيفرة صحيحة! 🔓", "+15,000 🪙 و +0.05 USDT");
                     updateUI();
                 } else {
                     alert("قمت بحل الشيفرة مسبقاً!");
@@ -1028,15 +982,15 @@
             }
         }
 
-        function claimTask(id, req, usdt, gold) {
+        function claimTask(id, req, usdt, gold, vipDays = 0) {
             if (game.completedTasks.includes(`t_${id}`)) return;
-            // فحص افتراضي للإحالات
             game.completedTasks.push(`t_${id}`);
             game.cash += usdt;
             game.gold += gold;
+            if (vipDays > 0) game.goldPerSec += 30; // إضافة ميزة VIP التلقائية
             document.getElementById(`tbtn-${id}`).textContent = "✓";
             document.getElementById(`tbtn-${id}`).disabled = true;
-            showRewardModal("مكافأة الإحالة! 🎁", `+${usdt} USDT و +${gold.toLocaleString()} 🪙`);
+            showRewardModal("مكافأة المهمة! 🎁", `+${usdt} USDT و +${gold.toLocaleString()} 🪙 ${vipDays > 0 ? `+ VIP (${vipDays} أيام)` : ''}`);
             updateUI();
         }
 
@@ -1055,15 +1009,44 @@
             }, 3000);
         }
 
-        // --- 10. توليد صور البروفايل الـ 15 واختيارها ---
+        function checkLevelTask(id, reqLvl, usdt, gold, vipDays = 0) {
+            if (game.completedTasks.includes(`t_${id}`)) return;
+            if (game.level >= reqLvl) {
+                game.completedTasks.push(`t_${id}`);
+                game.cash += usdt;
+                game.gold += gold;
+                if (vipDays > 0) game.goldPerSec += 30;
+                document.getElementById(`tbtn-${id}`).textContent = "✓";
+                document.getElementById(`tbtn-${id}`).disabled = true;
+                showRewardModal("إنجاز المستوى! 🌟", `+${usdt} USDT و +${gold.toLocaleString()} 🪙`);
+                updateUI();
+            } else {
+                alert(`تحتاج للوصول إلى المستوى ${reqLvl}. مستواك الحالي هو: ${game.level}`);
+            }
+        }
+
+        function checkTapTask(id, reqTaps, usdt, gold, vipDays = 0) {
+            if (game.completedTasks.includes(`t_${id}`)) return;
+            if (game.tapsCount >= reqTaps) {
+                game.completedTasks.push(`t_${id}`);
+                game.cash += usdt;
+                game.gold += gold;
+                if (vipDays > 0) game.goldPerSec += 30;
+                document.getElementById(`tbtn-${id}`).textContent = "✓";
+                document.getElementById(`tbtn-${id}`).disabled = true;
+                showRewardModal("إنجاز النقرات! ⛏️", `+${usdt} USDT و +${gold.toLocaleString()} 🪙`);
+                updateUI();
+            } else {
+                alert(`حققت ${game.tapsCount} نقرة من أصل ${reqTaps} نقرة مطلوبة.`);
+            }
+        }
+
         function renderAvatars() {
             const container = document.getElementById('avatars-container');
             container.innerHTML = '';
 
             AVATARS.forEach(a => {
-                const isUnlocked = game.unlockedAvatars.includes(a.id) || (a.req > 0 && game.level >= a.req);
                 const isSelected = game.selectedAvatarId === a.id;
-
                 const card = document.createElement('div');
                 card.className = `avatar-pick-card ${isSelected ? 'active-border' : ''}`;
                 
@@ -1073,8 +1056,8 @@
                 if (a.tier === 'gold') tierBadge = `<span class="tier-label" style="background:#f59e0b; color:#000;">2.8$</span>`;
 
                 card.innerHTML = `
-                    <div class="avatar-circle border-${a.tier}">${a.emoji}</div>
-                    <div style="font-size:11px; font-weight:bold;">${a.name}</div>
+                    <div class="avatar-circle border-${a.tier}">${getAvatarHTML(a)}</div>
+                    <div style="font-size:11px; font-weight:bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 90px;">${a.name}</div>
                     ${tierBadge}
                 `;
 
@@ -1090,7 +1073,7 @@
                         game.cash -= 2.8;
                         game.unlockedAvatars.push(avatar.id);
                         game.selectedAvatarId = avatar.id;
-                        alert("تم الشراء والارتداء بنجاح!");
+                        alert("تم الشراء والتفعيل بنجاح!");
                     } else {
                         alert("رصيدك من USDT غير كافٍ!");
                     }
@@ -1110,7 +1093,6 @@
             renderAvatars();
         }
 
-        // --- 11. تبديل اللغات وتصفير الحساب ---
         function setLanguage(lang) {
             currentLang = lang;
             const t = i18n[lang];
@@ -1121,7 +1103,6 @@
             document.getElementById('t-tasks-title').textContent = t.tasksTitle;
             document.getElementById('t-ex-title').textContent = t.exTitle;
             document.getElementById('t-profile-title').textContent = t.profileTitle;
-            document.getElementById('t-settings-title').textContent = t.settingsTitle;
             document.getElementById('nav-t-mine').textContent = t.navMine;
             document.getElementById('nav-t-wheel').textContent = t.navWheel;
             document.getElementById('nav-t-tasks').textContent = t.navTasks;
@@ -1131,12 +1112,11 @@
 
         function resetAccount() {
             if (confirm("هل أنت متأكد من تصفير حسابك والبدء من جديد؟")) {
-                localStorage.removeItem('fennec_v5_save');
+                localStorage.removeItem('fennec_v8_save');
                 location.reload();
             }
         }
 
-        // النوافذ والصفحات
         function switchPage(p) {
             document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
@@ -1167,7 +1147,6 @@
             document.getElementById('reward-modal').style.display = 'flex';
         }
 
-        // بدء التشغيل
         updateUI();
         drawWheel();
         checkWheelTimer();
