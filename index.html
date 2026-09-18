@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Fennec Gold VIP</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    :root {
+      --primary: #f59e0b;
+      --primary-glow: rgba(245, 158, 11, 0.4);
+      --secondary: #10b981;
+      --bg-dark: #090d16;
+      --card-bg: rgba(20, 29, 47, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #ffffff;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 10%, #1e293b 0%, var(--bg-dark) 100%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .top-bar {
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .level-badge {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #000;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 20px;
+    }
+
+    .content-area {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+    }
+
+    .score-container {
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .score-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    .score-val {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 0 25px var(--primary-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .usdt-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--secondary);
+      color: var(--secondary);
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .tap-area {
+      position: relative;
+      margin: auto 0;
+    }
+
+    .fennec-circle {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #27354f 0%, #151e2e 100%);
+      border: 6px solid var(--primary);
+      box-shadow: 0 0 45px var(--primary-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.06s ease;
+    }
+
+    .fennec-circle:active {
+      transform: scale(0.92);
+    }
+
+    .fennec-icon {
+      font-size: 6rem;
+      pointer-events: none;
+    }
+
+    .energy-box {
+      width: 100%;
+      max-width: 320px;
+      margin-bottom: 15px;
+    }
+
+    .energy-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #f59e0b, #10b981);
+      transition: width 0.2s ease;
+    }
+
+    .tab-content {
+      display: none;
+      width: 100%;
+    }
+
+    .tab-content.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .shop-list {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-bottom: 20px;
+    }
+
+    .shop-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .pack-details h4 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+
+    .pack-details p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .buy-btn {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+    }
+
+    .buy-btn:active {
+      transform: scale(0.95);
+    }
+
+    .nav-bar {
+      display: flex;
+      background: var(--card-bg);
+      border-top: 1px solid var(--card-border);
+      padding: 8px 0;
+      backdrop-filter: blur(15px);
+    }
+
+    .nav-btn {
+      flex: 1;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .nav-btn.active {
+      color: var(--primary);
+    }
+
+    .nav-btn span {
+      font-size: 1.3rem;
+    }
+
+    .floating-num {
+      position: absolute;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #10b981;
+      animation: floatEffect 0.8s ease-out forwards;
+      pointer-events: none;
+      text-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+    }
+
+    @keyframes floatEffect {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-90px) scale(1.3); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="user-info">
+      <span>🦊</span>
+      <span id="player-name">صياد الذهب</span>
+    </div>
+    <div id="player-rank" class="level-badge">برونزي Lvl 1</div>
+  </div>
+
+  <div class="content-area">
+
+    <div id="tab-mining" class="tab-content active">
+      <div class="score-container">
+        <div class="score-label">إجمالي الرصيد المكتسب</div>
+        <div class="score-val">
+          <span id="coin-count">0</span>
+        </div>
+        <div class="usdt-pill">⚡ قوة النقر: +<span id="mult-val">1</span></div>
+      </div>
+
+      <div class="tap-area">
+        <div id="fennec-btn" class="fennec-circle">
+          <div class="fennec-icon">🦊</div>
+        </div>
+      </div>
+
+      <div class="energy-box">
+        <div class="energy-meta">
+          <span>⚡ الطاقة</span>
+          <span><span id="energy-cur">1000</span> / <span id="energy-max">1000</span></span>
+        </div>
+        <div class="progress-track">
+          <div id="energy-fill" class="progress-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-shop" class="tab-content">
+      <h2 style="margin: 10px 0 15px; font-size: 1.3rem;">🛍️ متجر البكجات والترقيات</h2>
+      
+      <div class="shop-list">
+        
+        <div class="shop-card">
+          <div class="pack-details">
+            <h4>📦 باقة المبتدئ (Starter Pack)</h4>
+            <p>+50,000 قطعة فوراً + مضاعف نقر 2x</p>
+          </div>
+          <button class="buy-btn" onclick="buyPack('starter', 50000, 2)">شراء ⭐ 50</button>
+        </div>
+
+        <div class="shop-card">
+          <div class="pack-details">
+            <h4>🤖 بوت التعدين التلقائي (Auto Bot)</h4>
+            <p>يجمع الذهب تلقائياً وأنت غير متصل باللعبة</p>
+          </div>
+          <button class="buy-btn" onclick="buyPack('autobot', 0, 0)">شراء ⭐ 150</button>
+        </div>
+
+        <div class="shop-card">
+          <div class="pack-details">
+            <h4>👑 باقة الفنك الملكي (VIP Pack)</h4>
+            <p>+500,000 عملة + مضاعف نقر 5x + طاقة لا نهائية</p>
+          </div>
+          <button class="buy-btn" onclick="buyPack('vip', 500000, 5)">شراء ⭐ 500</button>
+        </div>
+
+        <div class="shop-card">
+          <div class="pack-details">
+            <h4>🔋 ترقية خزان الطاقة</h4>
+            <p>+1000 نقطة طاقة إضافية للحد الأقصى</p>
+          </div>
+          <button class="buy-btn" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);" onclick="upgradeEnergy()">ترقية 💰 5,000</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="nav-bar">
+    <button class="nav-btn active" onclick="switchTab('tab-mining', this)">
+      <span>⛏️</span> التعدين
+    </button>
+    <button class="nav-btn" onclick="switchTab('tab-shop', this)">
+      <span>🛍️</span> البكجات
+    </button>
+  </div>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+    tg.expand();
+
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playTone(freq, duration) {
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.gainNode || audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    let coins = parseInt(localStorage.getItem('fg_coins')) || 0;
+    let maxEnergy = parseInt(localStorage.getItem('fg_max_energy')) || 1000;
+    let curEnergy = parseInt(localStorage.getItem('fg_cur_energy')) || maxEnergy;
+    let multiplier = parseInt(localStorage.getItem('fg_multiplier')) || 1;
+
+    const coinElem = document.getElementById('coin-count');
+    const curEnergyElem = document.getElementById('energy-cur');
+    const maxEnergyElem = document.getElementById('energy-max');
+    const energyFill = document.getElementById('energy-fill');
+    const multValElem = document.getElementById('mult-val');
+    const fennecBtn = document.getElementById('fennec-btn');
+
+    if (tg.initDataUnsafe?.user?.first_name) {
+      document.getElementById('player-name').innerText = tg.initDataUnsafe.user.first_name;
+    }
+    updateUI();
+
+    fennecBtn.addEventListener('pointerdown', (e) => {
+      if (curEnergy < multiplier) {
+        if (tg.HapticFeedback) tg.HapticFeedback.notificationOccurred('error');
+        return;
+      }
+
+      curEnergy -= multiplier;
+      coins += multiplier;
+      updateUI();
+      saveGame();
+
+      playTone(600, 0.08);
+      if (tg.HapticFeedback) tg.HapticFeedback.impactOccurred('medium');
+
+      createFloatingText(e.clientX, e.clientY, `+${multiplier}`);
+    });
+
+    function createFloatingText(x, y, text) {
+      const el = document.createElement('div');
+      el.className = 'floating-num';
+      el.innerText = text;
+      const rect = fennecBtn.getBoundingClientRect();
+      el.style.left = (x - rect.left - 15) + 'px';
+      el.style.top = (y - rect.top - 30) + 'px';
+      fennecBtn.appendChild(el);
+      setTimeout(() => el.remove(), 800);
+    }
+
+    setInterval(() => {
+      if (curEnergy < maxEnergy) {
+        curEnergy = Math.min(maxEnergy, curEnergy + 2);
+        updateUI();
+      }
+    }, 1000);
+
+    function updateUI() {
+      coinElem.innerText = coins.toLocaleString();
+      curEnergyElem.innerText = curEnergy;
+      maxEnergyElem.innerText = maxEnergy;
+      multValElem.innerText = multiplier;
+      energyFill.style.width = (curEnergy / maxEnergy * 100) + '%';
+    }
+
+    function saveGame() {
+      localStorage.setItem('fg_coins', coins);
+      localStorage.setItem('fg_cur_energy', curEnergy);
+      localStorage.setItem('fg_max_energy', maxEnergy);
+      localStorage.setItem('fg_multiplier', multiplier);
+    }
+
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    function buyPack(packType, bonusCoins, boost) {
+      alert(`سيتم فتح بوابة الدفع بالنجوم الرسمية (Telegram Stars) لشراء ${packType}`);
+      coins += bonusCoins;
+      if (boost > 0) multiplier += boost;
+      updateUI();
+      saveGame();
+      playTone(900, 0.2);
+    }
+
+    function upgradeEnergy() {
+      if (coins >= 5000) {
+        coins -= 5000;
+        maxEnergy += 1000;
+        curEnergy = maxEnergy;
+        updateUI();
+        saveGame();
+        alert('تمت ترقية مخزن الطاقة بنجاح!');
+      } else {
+        alert('رصيدك من الذهب لا يكفي، تحتاج 5000 قطعة!');
+      }
+    }
+  </script>
+</body>
+</html>
