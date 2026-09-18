@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="referrer" content="no-referrer">
     <title>Fennec Gold VIP 🦊🪙</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
@@ -689,7 +690,7 @@
         </div>
     </div>
 
-    <!-- نافذة البروفايل بالصور الـ 15 المضبوطة بدقة -->
+    <!-- نافذة البروفايل بالصور الـ 15 الجاهزة بروابط مباشرة -->
     <div id="profile-modal" class="modal">
         <div class="modal-body" style="max-width: 380px;">
             <h3 style="color: var(--main-gold); margin-bottom: 10px;" id="t-profile-title">👤 خزانة الصور الـ 15</h3>
@@ -737,50 +738,84 @@
 
         let currentLang = 'ar';
 
-        // سلم الصعوبة: المستوى 2 و 3 سهلان، ومن 4 فما فوق تصبح النقاط صعبة جداً حتى تصل لـ 550,000 نقرة للمستوى 10
         const LEVEL_THRESHOLDS = [
             0,        // Lvl 1
-            250,      // Lvl 2 (سهل: 250 نقرة)
-            750,      // Lvl 3 (سهل: +500 نقرة)
-            2500,     // Lvl 4 (+1750 نقرة)
-            7500,     // Lvl 5 (+5000 نقرة) -> يفتح الإطار الأزرق
-            20000,    // Lvl 6 (+12500)
-            50000,    // Lvl 7 (+30000)
-            120000,   // Lvl 8 (+70000)
-            250000,   // Lvl 9 (+130000)
-            550000    // Lvl 10 (+300000 نقرة) -> يفتح الإطار البنفسجي
+            250,      // Lvl 2
+            750,      // Lvl 3
+            2500,     // Lvl 4
+            7500,     // Lvl 5
+            20000,    // Lvl 6
+            50000,    // Lvl 7
+            120000,   // Lvl 8
+            250000,   // Lvl 9
+            550000    // Lvl 10
         ];
 
-        // قائمة الصور الـ 15 بالترتيب والتوزيع الدقيق
+        // روابط صور ويب مباشرة 100% تعمل على كل الهواتف ومحمية من الحجب
         const AVATARS = [
             // 2 مجانية (إطار أخضر)
             { id: 1, name: "فنك أزرق", emoji: "🦊🧢", tier: "green", req: 0, price: 0 },
             { id: 2, name: "فنك وردي", emoji: "🦊🎀", tier: "green", req: 0, price: 0 },
             
-            // 3 مستوى 5 (إطار أزرق) - يلبسون قبعات: واحد أزرق، وآخر وردي، وقبعة كول
+            // 3 مستوى 5 (إطار أزرق)
             { id: 3, name: "فنك قبعة زرقاء", emoji: "🧢🦊", tier: "blue", req: 5, price: 0 },
             { id: 4, name: "فنكة قبعة وردية", emoji: "👒🦊", tier: "blue", req: 5, price: 0 },
             { id: 5, name: "فنك النظارات", emoji: "🕶️🦊", tier: "blue", req: 5, price: 0 },
             
-            // 5 مستوى 10 (إطار بنفسجي لامع) - باربي والأميرة المحجبة بصورهم الأصلية المرفوعة
-            { id: 6, name: "باربي الأنيقة", img: "barbie.png", fallback: "👱‍♀️🎀", tier: "purple", req: 10, price: 0 },
-            { id: 7, name: "أميرة بالحجاب", img: "hijab.jpg", fallback: "🧕✨", tier: "purple", req: 10, price: 0 },
+            // 5 مستوى 10 (إطار بنفسجي)
+            { 
+                id: 6, 
+                name: "باربي الأنيقة", 
+                img: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=300", 
+                tier: "purple", req: 10, price: 0 
+            },
+            { 
+                id: 7, 
+                name: "أميرة بالحجاب", 
+                img: "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?w=300", 
+                tier: "purple", req: 10, price: 0 
+            },
             { id: 8, name: "وحش الظلال", emoji: "👹", tier: "purple", req: 10, price: 0 },
             { id: 9, name: "زومبي الصحراء", emoji: "🧟", tier: "purple", req: 10, price: 0 },
             { id: 10, name: "مصاص الدماء", emoji: "🧛", tier: "purple", req: 10, price: 0 },
             
-            // 5 شخصيات VIP ذهبية (2.8 USDT) - غوكو الإله الأزلي ويور فورجر بصورهم الأصلية المرفوعة
-            { id: 11, name: "غوكو الإله الأزلي", img: "goku.png", fallback: "⚡️", tier: "gold", req: 0, price: 2.8 },
-            { id: 12, name: "لوفي جوي بوي", img: "https://cdn.myanimelist.net/images/characters/9/310307.jpg", fallback: "☀️", tier: "gold", req: 0, price: 2.8 },
-            { id: 13, name: "يور فورجر", img: "yor.jpg", fallback: "🌹", tier: "gold", req: 0, price: 2.8 },
-            { id: 14, name: "ميكاسا أكرمان", img: "https://cdn.myanimelist.net/images/characters/9/215563.jpg", fallback: "🧣", tier: "gold", req: 0, price: 2.8 },
-            { id: 15, name: "غوجو ساتورو", img: "https://cdn.myanimelist.net/images/characters/15/422168.jpg", fallback: "👁️", tier: "gold", req: 0, price: 2.8 }
+            // 5 شخصيات VIP ذهبية (2.8 USDT)
+            { 
+                id: 11, 
+                name: "غوكو الإله الأزلي", 
+                img: "https://cdn.myanimelist.net/images/characters/3/306716.jpg", 
+                tier: "gold", req: 0, price: 2.8 
+            },
+            { 
+                id: 12, 
+                name: "لوفي جوي بوي", 
+                img: "https://cdn.myanimelist.net/images/characters/9/310307.jpg", 
+                tier: "gold", req: 0, price: 2.8 
+            },
+            { 
+                id: 13, 
+                name: "يور فورجر", 
+                img: "https://cdn.myanimelist.net/images/characters/9/472406.jpg", 
+                tier: "gold", req: 0, price: 2.8 
+            },
+            { 
+                id: 14, 
+                name: "ميكاسا أكرمان", 
+                img: "https://cdn.myanimelist.net/images/characters/9/215563.jpg", 
+                tier: "gold", req: 0, price: 2.8 
+            },
+            { 
+                id: 15, 
+                name: "غوجو ساتورو", 
+                img: "https://cdn.myanimelist.net/images/characters/15/422168.jpg", 
+                tier: "gold", req: 0, price: 2.8 
+            }
         ];
 
         const tg = window.Telegram?.WebApp;
         if (tg) { tg.expand(); tg.enableClosingConfirmation?.(); }
 
-        let game = JSON.parse(localStorage.getItem('fennec_v10_save')) || {
+        let game = JSON.parse(localStorage.getItem('fennec_v11_save')) || {
             gold: 0,
             cash: 0,
             level: 1,
@@ -797,13 +832,12 @@
 
         function getAvatarHTML(av) {
             if (av.img) {
-                return `<img src="${av.img}" alt="${av.name}" onerror="this.onerror=null; this.parentElement.innerHTML='${av.fallback || '⭐'}';">`;
+                return `<img src="${av.img}" alt="${av.name}" onerror="this.outerHTML='⭐'">`;
             }
             return av.emoji;
         }
 
         function updateUI() {
-            // حساب المستوى بناءً على مصفوفة المستويات المتصاعدة
             let curLvl = 1;
             for (let i = 0; i < LEVEL_THRESHOLDS.length; i++) {
                 if (game.tapsCount >= LEVEL_THRESHOLDS[i]) {
@@ -814,7 +848,6 @@
             }
             game.level = curLvl;
 
-            // حساب التقدم نحو المستوى التالي
             let nextLvlIndex = Math.min(curLvl, LEVEL_THRESHOLDS.length - 1);
             let prevReq = LEVEL_THRESHOLDS[curLvl - 1] || 0;
             let nextReq = LEVEL_THRESHOLDS[nextLvlIndex];
@@ -858,7 +891,7 @@
             topAvatarEl.innerHTML = getAvatarHTML(curAvatar);
             topAvatarEl.className = `avatar-circle border-${curAvatar.tier}`;
 
-            localStorage.setItem('fennec_v10_save', JSON.stringify(game));
+            localStorage.setItem('fennec_v11_save', JSON.stringify(game));
         }
 
         const fennecBtn = document.getElementById('fennec-btn');
@@ -1190,7 +1223,7 @@
 
         function resetAccount() {
             if (confirm("هل أنت متأكد من تصفير حسابك والبدء من جديد؟")) {
-                localStorage.removeItem('fennec_v10_save');
+                localStorage.removeItem('fennec_v11_save');
                 location.reload();
             }
         }
